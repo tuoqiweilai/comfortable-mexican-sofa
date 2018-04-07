@@ -9,28 +9,9 @@ class ComfortableMexicanSofa::Configuration
   # 'ApplicationController' is the default
   attr_accessor :base_controller
 
-  # Module that will handle authentication to access cms-admin area
-  attr_accessor :admin_auth
-
-  # Module that will handle authorization against admin cms resources
-  attr_accessor :admin_authorization
-
-  # Module that will handle authentication for public pages
-  attr_accessor :public_auth
-
-  # Module that will handle authorization against public resources
-  attr_accessor :public_authorization
-
   # When arriving at /cms-admin you may chose to redirect to arbirtary path,
   # for example '/cms-admin/users'
   attr_accessor :admin_route_redirect
-
-  # With each page load, files will be synched with the database. Database entries are
-  # destroyed if there's no corresponding file. Seeds are disabled by default.
-  attr_accessor :enable_seeds
-
-  # Path where seeds can be located.
-  attr_accessor :seeds_path
 
   # Number of revisions kept. Default is 25. If you wish to disable: set this to 0.
   attr_accessor :revisions_limit
@@ -80,38 +61,12 @@ class ComfortableMexicanSofa::Configuration
   def initialize
     @cms_title            = "ComfortableMexicanSofa CMS Engine"
     @base_controller      = "ApplicationController"
-    @admin_auth           = "ComfortableMexicanSofa::AccessControl::AdminAuthentication"
-    @admin_authorization  = "ComfortableMexicanSofa::AccessControl::AdminAuthorization"
-    @public_auth          = "ComfortableMexicanSofa::AccessControl::PublicAuthentication"
-    @public_authorization = "ComfortableMexicanSofa::AccessControl::PublicAuthorization"
-    @seed_data_path       = nil
     @admin_route_redirect = ""
     @enable_sitemap       = true
-    @enable_seeds         = false
-    @seeds_path           = File.expand_path("db/cms_seeds", Rails.root)
     @revisions_limit      = 25
     @locales              = {
-      "ca"    => "Català",
-      "cs"    => "Česky",
-      "da"    => "Dansk",
-      "de"    => "Deutsch",
       "en"    => "English",
-      "es"    => "Español",
-      "fr"    => "Français",
-      "gr"    => "Ελληνικά",
-      "it"    => "Italiano",
-      "ja"    => "日本語",
-      "nb"    => "Norsk",
-      "nl"    => "Nederlands",
-      "pl"    => "Polski",
-      "pt-BR" => "Português Brasileiro",
-      "ru"    => "Русский",
-      "sk"    => "Slovensky",
-      "sv"    => "Svenska",
-      "tr"    => "Türkçe",
-      "uk"    => "Українська",
-      "zh-CN" => "简体中文",
-      "zh-TW" => "正體中文"
+      "zh-CN" => "简体中文"
     }
     @admin_locale         = nil
     @admin_cache_sweeper  = nil

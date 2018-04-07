@@ -6,7 +6,6 @@ class Comfy::Admin::Cms::Revisions::BaseController < Comfy::Admin::Cms::BaseCont
 
   before_action :load_record
   before_action :load_revision, except: :index
-  before_action :authorize
 
   def index
     revision = @record.revisions.order(created_at: :desc).first

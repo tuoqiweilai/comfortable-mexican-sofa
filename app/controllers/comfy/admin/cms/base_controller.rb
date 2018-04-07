@@ -4,7 +4,6 @@ class Comfy::Admin::Cms::BaseController < Comfy::Admin::BaseController
 
   before_action :load_admin_site,
                 :set_locale,
-                :load_seeds,
                 except: :jump
 
   layout :infer_layout
@@ -36,16 +35,6 @@ protected
   def set_locale
     I18n.locale = ComfortableMexicanSofa.config.admin_locale || (@site&.locale)
     true
-  end
-
-  def load_seeds
-    return unless ComfortableMexicanSofa.config.enable_seeds
-
-    controllers = %w[layouts pages snippets files].collect { |c| "comfy/admin/cms/" + c }
-    if controllers.member?(params[:controller]) && params[:action] == "index"
-      ComfortableMexicanSofa::Seeds::Importer.new(@site.identifier).import!
-      flash.now[:warning] = I18n.t("comfy.admin.cms.base.seeds_enabled")
-    end
   end
 
   def infer_layout

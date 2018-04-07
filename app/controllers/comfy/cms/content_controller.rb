@@ -1,18 +1,7 @@
 # frozen_string_literal: true
 
 class Comfy::Cms::ContentController < Comfy::Cms::BaseController
-
-  # Authentication module must have `authenticate` method
-  include ComfortableMexicanSofa.config.public_auth.to_s.constantize
-
-  # Authorization module must have `authorize` method
-  include ComfortableMexicanSofa.config.public_authorization.to_s.constantize
-
-  before_action :load_seeds
-  before_action :load_cms_page,
-                :authenticate,
-                :authorize,
-                only: :show
+  before_action :load_cms_page, only: :show
 
   def show
     if @cms_page.target_page.present?
@@ -50,11 +39,6 @@ protected
   def app_layout
     return false if request.xhr? || !@cms_layout
     @cms_layout.app_layout.present? ? @cms_layout.app_layout : false
-  end
-
-  def load_seeds
-    return unless ComfortableMexicanSofa.config.enable_seeds
-    ComfortableMexicanSofa::Seeds::Importer.new(@cms_site.identifier).import!
   end
 
   # Attempting to populate @cms_page and @cms_layout instance variables so they

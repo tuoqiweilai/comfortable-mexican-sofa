@@ -7,7 +7,6 @@ class Comfy::Admin::Cms::TranslationsController < Comfy::Admin::Cms::BaseControl
   before_action :load_page
   before_action :build_translation,   only: %i[new create]
   before_action :load_translation,    only: %i[edit update destroy]
-  before_action :authorize
   before_action :preview_translation, only: %i[create update]
 
   def new

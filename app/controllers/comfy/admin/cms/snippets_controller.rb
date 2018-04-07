@@ -7,7 +7,6 @@ class Comfy::Admin::Cms::SnippetsController < Comfy::Admin::Cms::BaseController
 
   before_action :build_snippet, only: %i[new create]
   before_action :load_snippet,  only: %i[edit update destroy]
-  before_action :authorize
 
   def index
     return redirect_to action: :new if @site.snippets.count.zero?

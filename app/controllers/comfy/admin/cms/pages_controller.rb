@@ -9,8 +9,6 @@ class Comfy::Admin::Cms::PagesController < Comfy::Admin::Cms::BaseController
   before_action :build_page,        only: %i[new create]
   before_action :load_page,         only: %i[edit update destroy]
 
-  before_action :authorize
-
   before_action :preview_page, only: %i[create update]
 
   def index

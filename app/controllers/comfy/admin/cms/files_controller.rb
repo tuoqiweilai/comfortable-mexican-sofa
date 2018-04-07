@@ -9,7 +9,6 @@ class Comfy::Admin::Cms::FilesController < Comfy::Admin::Cms::BaseController
 
   before_action :build_file,  only: %i[new create]
   before_action :load_file,   only: %i[edit update destroy]
-  before_action :authorize
 
   def index
     files_scope = @site.files.with_attached_attachment

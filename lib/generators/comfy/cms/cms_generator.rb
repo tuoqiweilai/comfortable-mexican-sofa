@@ -45,10 +45,6 @@ module Comfy
         route route_string
       end
 
-      def generate_cms_seeds
-        directory "db/cms_seeds", "db/cms_seeds"
-      end
-
       def generate_assets
         copy_file "app/assets/javascripts/comfy/admin/cms/custom.js",
           "app/assets/javascripts/comfy/admin/cms/custom.js"
